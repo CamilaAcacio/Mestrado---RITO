@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Wasattributedto" table="wasattributedto" catalog="provdmtest" optimistic-lock="version">
+        <id name="idwasAttributedTo" type="java.lang.Integer">
+            <column name="idwasAttributedTo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="person" class="model.Person" fetch="select">
+            <column name="person_idperson" length="45" />
+        </many-to-one>
+        <many-to-one name="project" class="model.Project" fetch="select">
+            <column name="project_idproject" length="45" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

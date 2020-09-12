@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Testingclassexecution" table="testingclassexecution" catalog="provdmtest" optimistic-lock="version">
+        <id name="idtestingClassExecution" type="java.lang.Integer">
+            <column name="idtestingClassExecution" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="testingclass" class="model.Testingclass" fetch="select">
+            <column name="testingClass_idtestingClass" not-null="true" />
+        </many-to-one>
+        <many-to-one name="testingsuiteexecution" class="model.Testingsuiteexecution" fetch="select">
+            <column name="testingSuiteExecution_idtestingSuiteExecution" length="45" not-null="true" />
+        </many-to-one>
+        <property name="executionTime" type="java.lang.Float">
+            <column name="executionTime" precision="12" scale="0" />
+        </property>
+        <set name="testingmethodexecutions" table="testingmethodexecution" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingClassExecution_idtestingClassExecution" not-null="true" />
+            </key>
+            <one-to-many class="model.Testingmethodexecution" />
+        </set>
+        <set name="wasinformedbies" table="wasinformedby" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingClassExecution_idtestingClassExecution" />
+            </key>
+            <one-to-many class="model.Wasinformedby" />
+        </set>
+        <set name="useds" table="used" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingClassExecution_idtestingClassExecution" />
+            </key>
+            <one-to-many class="model.Used" />
+        </set>
+    </class>
+</hibernate-mapping>

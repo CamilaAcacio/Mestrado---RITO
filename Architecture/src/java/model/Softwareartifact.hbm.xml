@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Softwareartifact" table="softwareartifact" catalog="provdmtest" optimistic-lock="version">
+        <id name="idsoftwareArtifact" type="string">
+            <column name="idsoftwareArtifact" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="project" class="model.Project" fetch="select">
+            <column name="project_idproject" length="45" not-null="true" />
+        </many-to-one>
+        <set name="softwarebuilds" table="softwarebuild" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="softwareArtifact_idsoftwareArtifact" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Softwarebuild" />
+        </set>
+        <set name="sourcecodes" table="sourcecode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="softwareArtifact_idsoftwareArtifact" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Sourcecode" />
+        </set>
+        <set name="wasderivedfroms" table="wasderivedfrom" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="softwareArtifact_idsoftwareArtifact" length="45" />
+            </key>
+            <one-to-many class="model.Wasderivedfrom" />
+        </set>
+        <set name="softwareexecutables" table="softwareexecutable" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="softwareArtifact_idsoftwareArtifact" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Softwareexecutable" />
+        </set>
+        <set name="useds" table="used" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="softwareArtifact_idsoftwareArtifact" length="45" />
+            </key>
+            <one-to-many class="model.Used" />
+        </set>
+    </class>
+</hibernate-mapping>

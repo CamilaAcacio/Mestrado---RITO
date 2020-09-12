@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Entityprov" table="entityprov" catalog="provdmtest" optimistic-lock="version">
+        <id name="identity" type="string">
+            <column name="identity" length="45" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <set name="projects" table="project" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="entity_identity" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Project" />
+        </set>
+    </class>
+</hibernate-mapping>

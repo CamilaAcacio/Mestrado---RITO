@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Testingmethodexecution" table="testingmethodexecution" catalog="provdmtest" optimistic-lock="version">
+        <id name="idtestingMethodExection" type="java.lang.Integer">
+            <column name="idtestingMethodExection" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="testingclassexecution" class="model.Testingclassexecution" fetch="select">
+            <column name="testingClassExecution_idtestingClassExecution" not-null="true" />
+        </many-to-one>
+        <many-to-one name="testingmethod" class="model.Testingmethod" fetch="select">
+            <column name="testingMethod_idtestingMethod" not-null="true" />
+        </many-to-one>
+        <property name="durationTime" type="java.lang.Float">
+            <column name="durationTime" precision="12" scale="0" />
+        </property>
+        <property name="result" type="string">
+            <column name="result" length="45" />
+        </property>
+        <property name="errorDatails" type="string">
+            <column name="errorDatails" length="150" />
+        </property>
+        <property name="errorStrackTrace" type="string">
+            <column name="errorStrackTrace" length="150" />
+        </property>
+        <set name="wasinformedbies" table="wasinformedby" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingMethodExecution_idtestingMethodExection" />
+            </key>
+            <one-to-many class="model.Wasinformedby" />
+        </set>
+        <set name="useds" table="used" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingMethodExecution_idtestingMethodExection" />
+            </key>
+            <one-to-many class="model.Used" />
+        </set>
+    </class>
+</hibernate-mapping>

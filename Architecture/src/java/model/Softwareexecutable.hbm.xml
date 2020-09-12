@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Softwareexecutable" table="softwareexecutable" catalog="provdmtest" optimistic-lock="version">
+        <id name="idsoftwareExecutable" type="string">
+            <column name="idsoftwareExecutable" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="softwareartifact" class="model.Softwareartifact" fetch="select">
+            <column name="softwareArtifact_idsoftwareArtifact" length="45" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <set name="wasgeneratedbies" table="wasgeneratedby" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="softwareExecutable_idsoftwareExecutable" length="45" />
+            </key>
+            <one-to-many class="model.Wasgeneratedby" />
+        </set>
+        <set name="wasderivedfroms" table="wasderivedfrom" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="softwareExecutable_idsoftwareExecutable" length="45" />
+            </key>
+            <one-to-many class="model.Wasderivedfrom" />
+        </set>
+    </class>
+</hibernate-mapping>

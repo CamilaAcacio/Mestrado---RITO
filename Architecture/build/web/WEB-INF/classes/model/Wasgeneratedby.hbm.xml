@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Wasgeneratedby" table="wasgeneratedby" catalog="provdmtest" optimistic-lock="version">
+        <id name="idwasGeneratedBy" type="java.lang.Integer">
+            <column name="idwasGeneratedBy" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="buildexecution" class="model.Buildexecution" fetch="select">
+            <column name="buildExecution_idbuildExecution" length="45" />
+        </many-to-one>
+        <many-to-one name="softwarebuild" class="model.Softwarebuild" fetch="select">
+            <column name="softwareBuild_idsoftwareBuild" length="45" />
+        </many-to-one>
+        <many-to-one name="softwareexecutable" class="model.Softwareexecutable" fetch="select">
+            <column name="softwareExecutable_idsoftwareExecutable" length="45" />
+        </many-to-one>
+        <many-to-one name="testinglog" class="model.Testinglog" fetch="select">
+            <column name="testingLog_idtestingLog" length="45" />
+        </many-to-one>
+        <many-to-one name="testingsuiteexecution" class="model.Testingsuiteexecution" fetch="select">
+            <column name="testingSuiteExecution_idtestingSuiteExecution" length="45" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

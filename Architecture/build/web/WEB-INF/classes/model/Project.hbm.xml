@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Project" table="project" catalog="provdmtest" optimistic-lock="version">
+        <id name="idproject" type="string">
+            <column name="idproject" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="entityprov" class="model.Entityprov" fetch="select">
+            <column name="entity_identity" length="45" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <property name="projectVersion" type="string">
+            <column name="project_version" length="45" />
+        </property>
+        <set name="wasattributedtos" table="wasattributedto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="project_idproject" length="45" />
+            </key>
+            <one-to-many class="model.Wasattributedto" />
+        </set>
+        <set name="testingartifacts" table="testingartifact" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="project_idproject" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Testingartifact" />
+        </set>
+        <set name="environments" table="environment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="project_idproject" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Environment" />
+        </set>
+        <set name="testingsuites" table="testingsuite" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="project_idproject" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Testingsuite" />
+        </set>
+        <set name="softwareartifacts" table="softwareartifact" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="project_idproject" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Softwareartifact" />
+        </set>
+    </class>
+</hibernate-mapping>

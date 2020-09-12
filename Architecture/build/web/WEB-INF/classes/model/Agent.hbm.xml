@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Agent" table="agent" catalog="provdmtest" optimistic-lock="version">
+        <id name="idagent" type="string">
+            <column name="idagent" length="45" />
+            <generator class="assigned" />
+        </id>
+        <set name="persons" table="person" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="agent_idagent" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Person" />
+        </set>
+        <set name="actedonbehalfofsForAgentIdagent" table="actedonbehalfof" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="agent_idagent" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Actedonbehalfof" />
+        </set>
+        <set name="actedonbehalfofsForAgentIdagent1" table="actedonbehalfof" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="agent_idagent1" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Actedonbehalfof" />
+        </set>
+    </class>
+</hibernate-mapping>

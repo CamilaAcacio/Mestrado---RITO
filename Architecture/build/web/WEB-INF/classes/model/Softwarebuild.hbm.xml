@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Softwarebuild" table="softwarebuild" catalog="provdmtest" optimistic-lock="version">
+        <id name="idsoftwareBuild" type="string">
+            <column name="idsoftwareBuild" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="softwareartifact" class="model.Softwareartifact" fetch="select">
+            <column name="softwareArtifact_idsoftwareArtifact" length="45" not-null="true" />
+        </many-to-one>
+        <property name="startBuild" type="string">
+            <column name="startBuild" length="45" />
+        </property>
+        <property name="durationBuild" type="java.lang.Double">
+            <column name="durationBuild" precision="22" scale="0" />
+        </property>
+        <set name="wasderivedfroms" table="wasderivedfrom" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="softwareBuild_idsoftwareBuild" length="45" />
+            </key>
+            <one-to-many class="model.Wasderivedfrom" />
+        </set>
+        <set name="wasgeneratedbies" table="wasgeneratedby" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="softwareBuild_idsoftwareBuild" length="45" />
+            </key>
+            <one-to-many class="model.Wasgeneratedby" />
+        </set>
+    </class>
+</hibernate-mapping>

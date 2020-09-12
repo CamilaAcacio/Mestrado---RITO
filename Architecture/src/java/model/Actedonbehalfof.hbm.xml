@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Actedonbehalfof" table="actedonbehalfof" catalog="provdmtest" optimistic-lock="version">
+        <id name="idactedOnBehalfOf" type="java.lang.Integer">
+            <column name="idactedOnBehalfOf" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="agentByAgentIdagent" class="model.Agent" fetch="select">
+            <column name="agent_idagent" length="45" not-null="true" />
+        </many-to-one>
+        <many-to-one name="agentByAgentIdagent1" class="model.Agent" fetch="select">
+            <column name="agent_idagent1" length="45" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

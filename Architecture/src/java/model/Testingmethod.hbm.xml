@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Testingmethod" table="testingmethod" catalog="provdmtest" optimistic-lock="version">
+        <id name="idtestingMethod" type="java.lang.Integer">
+            <column name="idtestingMethod" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="testingclass" class="model.Testingclass" fetch="select">
+            <column name="testingClass_idtestingClass" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="100" />
+        </property>
+        <property name="skipped" type="string">
+            <column name="skipped" length="45" />
+        </property>
+        <set name="coverses" table="covers" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingMethod_idtestingMethod" not-null="true" />
+            </key>
+            <one-to-many class="model.Covers" />
+        </set>
+        <set name="testingmethodexecutions" table="testingmethodexecution" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingMethod_idtestingMethod" not-null="true" />
+            </key>
+            <one-to-many class="model.Testingmethodexecution" />
+        </set>
+        <set name="useds" table="used" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingMethod_idtestingMethod" />
+            </key>
+            <one-to-many class="model.Used" />
+        </set>
+    </class>
+</hibernate-mapping>

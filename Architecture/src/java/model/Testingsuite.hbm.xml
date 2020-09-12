@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Testingsuite" table="testingsuite" catalog="provdmtest" optimistic-lock="version">
+        <id name="idtestingSuite" type="string">
+            <column name="idtestingSuite" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="project" class="model.Project" fetch="select">
+            <column name="project_idproject" length="45" not-null="true" />
+        </many-to-one>
+        <set name="wasderivedfroms" table="wasderivedfrom" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingSuite_idtestingSuite" length="45" />
+            </key>
+            <one-to-many class="model.Wasderivedfrom" />
+        </set>
+        <set name="testingclasses" table="testingclass" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingSuite_idtestingSuite" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Testingclass" />
+        </set>
+        <set name="testingsuiteexecutions" table="testingsuiteexecution" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingSuite_idtestingSuite" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Testingsuiteexecution" />
+        </set>
+        <set name="composedofs" table="composedof" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingSuite_idtestingSuite" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Composedof" />
+        </set>
+        <set name="useds" table="used" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingSuite_idtestingSuite" length="45" />
+            </key>
+            <one-to-many class="model.Used" />
+        </set>
+    </class>
+</hibernate-mapping>

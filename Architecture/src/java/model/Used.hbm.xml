@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Used" table="used" catalog="provdmtest" optimistic-lock="version">
+        <id name="idused" type="java.lang.Integer">
+            <column name="idused" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="buildexecution" class="model.Buildexecution" fetch="select">
+            <column name="buildExecution_idbuildExecution" length="45" />
+        </many-to-one>
+        <many-to-one name="softwareartifact" class="model.Softwareartifact" fetch="select">
+            <column name="softwareArtifact_idsoftwareArtifact" length="45" />
+        </many-to-one>
+        <many-to-one name="testingclass" class="model.Testingclass" fetch="select">
+            <column name="testingClass_idtestingClass" />
+        </many-to-one>
+        <many-to-one name="testingclassexecution" class="model.Testingclassexecution" fetch="select">
+            <column name="testingClassExecution_idtestingClassExecution" />
+        </many-to-one>
+        <many-to-one name="testingmethod" class="model.Testingmethod" fetch="select">
+            <column name="testingMethod_idtestingMethod" />
+        </many-to-one>
+        <many-to-one name="testingmethodexecution" class="model.Testingmethodexecution" fetch="select">
+            <column name="testingMethodExecution_idtestingMethodExection" />
+        </many-to-one>
+        <many-to-one name="testingsuite" class="model.Testingsuite" fetch="select">
+            <column name="testingSuite_idtestingSuite" length="45" />
+        </many-to-one>
+        <many-to-one name="testingsuiteexecution" class="model.Testingsuiteexecution" fetch="select">
+            <column name="testingSuiteExecution_idtestingSuiteExecution" length="45" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

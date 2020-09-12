@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Wasderivedfrom" table="wasderivedfrom" catalog="provdmtest" optimistic-lock="version">
+        <id name="idwasDerivedFrom" type="java.lang.Integer">
+            <column name="idwasDerivedFrom" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="softwareartifact" class="model.Softwareartifact" fetch="select">
+            <column name="softwareArtifact_idsoftwareArtifact" length="45" />
+        </many-to-one>
+        <many-to-one name="softwarebuild" class="model.Softwarebuild" fetch="select">
+            <column name="softwareBuild_idsoftwareBuild" length="45" />
+        </many-to-one>
+        <many-to-one name="softwareexecutable" class="model.Softwareexecutable" fetch="select">
+            <column name="softwareExecutable_idsoftwareExecutable" length="45" />
+        </many-to-one>
+        <many-to-one name="sourcecode" class="model.Sourcecode" fetch="select">
+            <column name="sourceCode_idsourceCode" />
+        </many-to-one>
+        <many-to-one name="testinglog" class="model.Testinglog" fetch="select">
+            <column name="testingLog_idtestingLog" length="45" />
+        </many-to-one>
+        <many-to-one name="testingsourcecode" class="model.Testingsourcecode" fetch="select">
+            <column name="testingSourceCode_idtestingSourceCode" />
+        </many-to-one>
+        <many-to-one name="testingsuite" class="model.Testingsuite" fetch="select">
+            <column name="testingSuite_idtestingSuite" length="45" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Environment" table="environment" catalog="provdmtest" optimistic-lock="version">
+        <id name="idenvironment" type="string">
+            <column name="idenvironment" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="project" class="model.Project" fetch="select">
+            <column name="project_idproject" length="45" not-null="true" />
+        </many-to-one>
+        <property name="javaClassversion" type="string">
+            <column name="javaClassversion" length="45" />
+        </property>
+        <property name="javaRuntimeName" type="string">
+            <column name="javaRuntimeName" length="45" />
+        </property>
+        <property name="javaRuntimeVersion" type="string">
+            <column name="javaRuntimeVersion" length="45" />
+        </property>
+        <property name="javaSpecificationName" type="string">
+            <column name="javaSpecificationName" length="45" />
+        </property>
+        <property name="javaVmSpecificationVersion" type="string">
+            <column name="javaVmSpecificationVersion" length="45" />
+        </property>
+        <property name="javaVmVersion" type="string">
+            <column name="javaVmVersion" length="45" />
+        </property>
+        <property name="osName" type="string">
+            <column name="osName" length="45" />
+        </property>
+        <property name="osVersion" type="string">
+            <column name="osVersion" length="45" />
+        </property>
+        <property name="idBuild" type="java.lang.Integer">
+            <column name="idBuild" />
+        </property>
+        <set name="hasenvironments" table="hasenvironment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="environment_idenvironment" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Hasenvironment" />
+        </set>
+    </class>
+</hibernate-mapping>

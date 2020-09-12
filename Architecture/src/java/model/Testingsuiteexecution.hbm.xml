@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Testingsuiteexecution" table="testingsuiteexecution" catalog="provdmtest" optimistic-lock="version">
+        <id name="idtestingSuiteExecution" type="string">
+            <column name="idtestingSuiteExecution" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="activity" class="model.Activity" fetch="select">
+            <column name="activity_idactivity" length="45" not-null="true" />
+        </many-to-one>
+        <many-to-one name="testingsuite" class="model.Testingsuite" fetch="select">
+            <column name="testingSuite_idtestingSuite" length="45" not-null="true" />
+        </many-to-one>
+        <property name="duration" type="java.lang.Float">
+            <column name="duration" precision="12" scale="0" />
+        </property>
+        <property name="succesfullTest" type="java.lang.Integer">
+            <column name="succesfull_test" />
+        </property>
+        <property name="failedTest" type="java.lang.Integer">
+            <column name="failed_test" />
+        </property>
+        <property name="skippedTest" type="java.lang.Integer">
+            <column name="skipped_test" />
+        </property>
+        <property name="totalCount" type="java.lang.Integer">
+            <column name="totalCount" />
+        </property>
+        <property name="healthScale" type="java.lang.Double">
+            <column name="healthScale" precision="22" scale="0" />
+        </property>
+        <property name="idBuild" type="java.lang.Integer">
+            <column name="idBuild" />
+        </property>
+        <set name="testingclassexecutions" table="testingclassexecution" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingSuiteExecution_idtestingSuiteExecution" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Testingclassexecution" />
+        </set>
+        <set name="wasinformedbies" table="wasinformedby" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingSuiteExecution_idtestingSuiteExecution" length="45" />
+            </key>
+            <one-to-many class="model.Wasinformedby" />
+        </set>
+        <set name="hasenvironments" table="hasenvironment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingSuiteExecution_idtestingSuiteExecution" length="45" />
+            </key>
+            <one-to-many class="model.Hasenvironment" />
+        </set>
+        <set name="wasgeneratedbies" table="wasgeneratedby" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingSuiteExecution_idtestingSuiteExecution" length="45" />
+            </key>
+            <one-to-many class="model.Wasgeneratedby" />
+        </set>
+        <set name="useds" table="used" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingSuiteExecution_idtestingSuiteExecution" length="45" />
+            </key>
+            <one-to-many class="model.Used" />
+        </set>
+        <set name="wasassociatedwiths" table="wasassociatedwith" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingSuiteExecution_idtestingSuiteExecution" length="45" />
+            </key>
+            <one-to-many class="model.Wasassociatedwith" />
+        </set>
+    </class>
+</hibernate-mapping>

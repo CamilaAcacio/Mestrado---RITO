@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Buildexecution" table="buildexecution" catalog="provdmtest" optimistic-lock="version">
+        <id name="idbuildExecution" type="string">
+            <column name="idbuildExecution" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="activity" class="model.Activity" fetch="select">
+            <column name="activity_idactivity" length="45" not-null="true" />
+        </many-to-one>
+        <property name="result" type="string">
+            <column name="result" length="10" />
+        </property>
+        <property name="duration" type="java.lang.Integer">
+            <column name="duration" />
+        </property>
+        <property name="workspace" type="string">
+            <column name="workspace" length="150" />
+        </property>
+        <set name="wasassociatedwiths" table="wasassociatedwith" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="buildExecution_idbuildExecution" length="45" />
+            </key>
+            <one-to-many class="model.Wasassociatedwith" />
+        </set>
+        <set name="wasgeneratedbies" table="wasgeneratedby" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="buildExecution_idbuildExecution" length="45" />
+            </key>
+            <one-to-many class="model.Wasgeneratedby" />
+        </set>
+        <set name="hasenvironments" table="hasenvironment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="buildExecution_idbuildExecution" length="45" />
+            </key>
+            <one-to-many class="model.Hasenvironment" />
+        </set>
+        <set name="useds" table="used" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="buildExecution_idbuildExecution" length="45" />
+            </key>
+            <one-to-many class="model.Used" />
+        </set>
+    </class>
+</hibernate-mapping>

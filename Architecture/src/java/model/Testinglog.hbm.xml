@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Testinglog" table="testinglog" catalog="provdmtest" optimistic-lock="version">
+        <id name="idtestingLog" type="string">
+            <column name="idtestingLog" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="testingartifact" class="model.Testingartifact" fetch="select">
+            <column name="testingArtifact_idtestingArtifact" length="45" not-null="true" />
+        </many-to-one>
+        <property name="path" type="string">
+            <column name="path" length="300" />
+        </property>
+        <property name="generationDateTime" type="string">
+            <column name="generationDateTime" length="45" />
+        </property>
+        <set name="wasgeneratedbies" table="wasgeneratedby" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingLog_idtestingLog" length="45" />
+            </key>
+            <one-to-many class="model.Wasgeneratedby" />
+        </set>
+        <set name="wasderivedfroms" table="wasderivedfrom" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingLog_idtestingLog" length="45" />
+            </key>
+            <one-to-many class="model.Wasderivedfrom" />
+        </set>
+    </class>
+</hibernate-mapping>

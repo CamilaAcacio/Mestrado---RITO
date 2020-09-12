@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Wasinformedby" table="wasinformedby" catalog="provdmtest" optimistic-lock="version">
+        <id name="idwasInformedBy" type="java.lang.Integer">
+            <column name="idwasInformedBy" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="testingclassexecution" class="model.Testingclassexecution" fetch="select">
+            <column name="testingClassExecution_idtestingClassExecution" />
+        </many-to-one>
+        <many-to-one name="testingmethodexecution" class="model.Testingmethodexecution" fetch="select">
+            <column name="testingMethodExecution_idtestingMethodExection" />
+        </many-to-one>
+        <many-to-one name="testingsuiteexecution" class="model.Testingsuiteexecution" fetch="select">
+            <column name="testingSuiteExecution_idtestingSuiteExecution" length="45" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

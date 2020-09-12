@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Commitactivity" table="commitactivity" catalog="provdmtest" optimistic-lock="version">
+        <id name="idcommitActivity" type="string">
+            <column name="idcommitActivity" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="activity" class="model.Activity" fetch="select">
+            <column name="activity_idactivity" length="45" not-null="true" />
+        </many-to-one>
+        <property name="commit" type="string">
+            <column name="commit" length="45" />
+        </property>
+        <property name="author" type="string">
+            <column name="author" length="45" />
+        </property>
+        <property name="commiter" type="string">
+            <column name="commiter" length="45" />
+        </property>
+        <property name="hour" type="string">
+            <column name="hour" length="45" />
+        </property>
+        <property name="parent" type="string">
+            <column name="parent" length="45" />
+        </property>
+        <property name="tree" type="string">
+            <column name="tree" length="45" />
+        </property>
+        <property name="date" type="string">
+            <column name="date" length="45" />
+        </property>
+        <property name="idBuild" type="java.lang.Integer">
+            <column name="idBuild" />
+        </property>
+        <set name="wasassociatedwiths" table="wasassociatedwith" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="commitActivity_idcommitActivity" length="45" />
+            </key>
+            <one-to-many class="model.Wasassociatedwith" />
+        </set>
+    </class>
+</hibernate-mapping>

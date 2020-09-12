@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2017 11:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Testingartifact" table="testingartifact" catalog="provdmtest" optimistic-lock="version">
+        <id name="idtestingArtifact" type="string">
+            <column name="idtestingArtifact" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="project" class="model.Project" fetch="select">
+            <column name="project_idproject" length="45" not-null="true" />
+        </many-to-one>
+        <set name="testingsourcecodes" table="testingsourcecode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingArtifact_idtestingArtifact" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Testingsourcecode" />
+        </set>
+        <set name="testinglogs" table="testinglog" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="testingArtifact_idtestingArtifact" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.Testinglog" />
+        </set>
+    </class>
+</hibernate-mapping>
